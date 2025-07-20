@@ -57,7 +57,7 @@ body{
     background-color: lightgray;
     color: black;
 }
-.togglesign{
+.toggleSign{
     background-color: lightgray;
     color: black;
 }
@@ -67,5 +67,5 @@ body{
 }
 
 .clear:active{background-color:rgb(137, 137, 137) ;}
-.togglesign:active{background-color:rgb(137, 137, 137) ;}
+.toggleSign:active{background-color:rgb(137, 137, 137) ;}
 .percentage:active{background-color:rgb(137, 137, 137) ;}
