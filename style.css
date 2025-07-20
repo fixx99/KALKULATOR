@@ -16,12 +16,12 @@ body{
 }
 
 #display{
+    color: white;
     width: 230px;
     height: 60px;
     margin-bottom: 15px;
     font-size: 48px;
     text-align: right;
-    text-color: black;
     padding: 10px;
     border: 1px solid #080808;
     border-radius: 10px;
@@ -56,14 +56,17 @@ body{
 .clear{
     background-color: lightgray;
     color: black;
+    text-align: auto;
 }
 .toggleSign{
     background-color: lightgray;
     color: black;
+    text-align: auto;
 }
 .percentage{
     background-color: lightgray;
     color: black;
+    text-align: auto;
 }
 
 .clear:active{background-color:rgb(137, 137, 137) ;}
