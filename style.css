@@ -25,6 +25,7 @@ body{
     padding: 10px;
     border: 1px solid #080808;
     border-radius: 10px;
+    display-color: darkgray;
 }
 
 .button{
