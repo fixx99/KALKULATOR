@@ -17,7 +17,6 @@ body{
 
 #display{
     color: white;
-    background-color: darkgray;
     width: 230px;
     height: 60px;
     margin-bottom: 15px;
@@ -44,7 +43,7 @@ body{
     height: 50px;
     width: 50px;
     font-size: 20px;
-    text-align: center;
+    text-align: auto;
     background-color: rgb(125, 125, 125);
     cursor: pointer;
 }
