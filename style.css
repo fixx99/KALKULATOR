@@ -16,6 +16,7 @@ body{
 }
 
 #display{
+    background-color:rgb(125, 125, 125);
     color: white;
     width: 230px;
     height: 60px;
