@@ -1,18 +1,40 @@
 function appendValue(value){
-    document.getElementById("display").value += value;
+    const display = document.getElementById("display");
+    // Untuk display
+    if (value === "*") {
+        displayValue += "×"; // tampilkan simbol kali
+    } else {
+        displayValue += value;
+    }
+
+    // Untuk perhitungan
+    realValue += value;
+
+    display.value = displayValue
+    adjustFontSize();
 }
 
 function clearDisplay(){
-    document.getElementById("display").value = "";
+    consy display = document.getElementById("display");
+    display.value = "";
+    realValue = "";
+    displayValue = "";
+    adjustFontSize();
 }
 
 function calculate(){
     const display = document.getElementById("display");
     try {
-        display.value = eval(display.value);
-    } catch{
+        const result = eval(realValue);
+        display.value = result;
+        displayValue = result.toString();
+        realValue = result.toString();
+    } catch {
         display.value = "error";
+        displayValue = "";
+        realValue = "";
     }
+    adjustFontSize();
 }
 
 function toggleSign() {
@@ -22,6 +44,7 @@ function toggleSign() {
     } else if (display.value !== "") {
         display.value = "-" + display.value;
     }
+    adjustFontSize();
 }
 
 function percentage() {
@@ -29,4 +52,20 @@ function percentage() {
     if (display.value !== "") {
         display.value = parseFloat(display.value) / 100;
     }
+    adjustFontSize();
 }
+
+function adjustFontSize() {
+    const display = document.getElementById("display");
+    let fontSize = 48;
+    const maxWidth = display.offsetWidth - 20; // padding consideration
+    display.style.fontSize = fontSize + "px";
+
+    while (display.scrollWidth > maxWidth && fontSize > 12) {
+        fontSize--;
+        display.style.fontSize = fontSize + "px";
+    }
+}
+
+let realValue = "";
+let displayValue = "";
