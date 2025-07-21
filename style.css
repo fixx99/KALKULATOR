@@ -16,8 +16,8 @@ body{
 }
 
 #display{
-    background-color:rgb(125, 125, 125);
     color: white;
+    background-color:rgb(125, 125, 125);
     width: 230px;
     height: 60px;
     margin-bottom: 15px;
