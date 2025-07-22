@@ -1,3 +1,6 @@
+let realValue = "";
+let displayValue = "";
+
 function appendValue(value){
     const display = document.getElementById("display");
     // Untuk display
@@ -66,6 +69,3 @@ function adjustFontSize() {
         display.style.fontSize = fontSize + "px";
     }
 }
-
-let realValue = "";
-let displayValue = "";
