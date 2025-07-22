@@ -26,8 +26,8 @@ body{
     padding: 10px;
     border: 1px solid #080808;
     border-radius: 10px;
-    overflow: auto;
-    direction: ltr;
+    resize: none;
+    overflow-x: auto;
 }
 
 .button{
