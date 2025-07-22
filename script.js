@@ -5,14 +5,19 @@ function appendValue(val) {
   const display = document.getElementById("display");
 
   // Untuk perhitungan
-  realValue += val;
+  if (/[0-9]/.test(val)) {
+    realValue += val;
+    // Tambahkan ke angka terakhir displayValue
+    let tokens = realValue.split(/([\+\-\*\/])/);
+    let last = tokens[tokens.length - 1];
+    tokens[tokens.length - 1] = last; // biarkan realValue tetap mentah
 
-  // Untuk tampilan
-  if (val === "*") {
-    displayValue += "×";
-  } else if (val === "/") {
-    displayValue += "÷";
+    // Format ulang display
+    displayValue = tokens.map(token => {
+      return /^[0-9]+$/.test(token) ? formatNumberWithDots(token) : token;
+    }).join('');
   } else {
+    realValue += val;
     displayValue += val;
   }
 
@@ -30,10 +35,11 @@ function clearDisplay() {
 function calculate() {
   const display = document.getElementById("display");
   try {
-    const result = eval(realValue);
-    display.value = result;
+    const parsed = realValue.replace(/\./g,'');
+    const result = eval(parsed);
+    display.value = displayValue;
     realValue = result.toString();
-    displayValue = result.toString();
+    displayValue = formatNumberWithDots(realValue);
   } catch {
     display.value = "error";
     realValue = "";
