@@ -72,8 +72,10 @@ function adjustFontSize() {
   const maxWidth = display.offsetWidth - 20;
   display.style.fontSize = fontSize + "px";
 
-  while (display.scrollWidth > maxWidth && fontSize > 16) {
-    fontSize--;
-    display.style.fontSize = fontSize + "px";
-  }
+  setTimeout(() => {
+    while (display.scrollWidth > display.clientWidth && fontSize > 16) {
+      fontSize--;
+      display.style.fontSize = fontSize + 'px';
+    }
+  }, 0);
 }
