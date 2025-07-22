@@ -3,15 +3,15 @@ let displayValue = "";
 
 function appendValue(value){
     const display = document.getElementById("display");
+    // Untuk perhitungan
+    realValue += value;
+    
     // Untuk display
     if (value === "*") {
         displayValue += "×"; // tampilkan simbol kali
     } else {
         displayValue += value;
     }
-
-    // Untuk perhitungan
-    realValue += value;
 
     display.value = displayValue
     adjustFontSize();
