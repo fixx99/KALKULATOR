@@ -4,24 +4,18 @@ let displayValue = '';
 function appendValue(val) {
   const display = document.getElementById("display");
 
-  // Untuk perhitungan
-  if (/[0-9]/.test(val)) {
-    realValue += val;
-    // Tambahkan ke angka terakhir displayValue
-    let tokens = realValue.split(/([\+\-\*\/])/);
-    let last = tokens[tokens.length - 1];
-    tokens[tokens.length - 1] = last; // biarkan realValue tetap mentah
+  if (!display) return;
 
-    // Format ulang display
-    displayValue = tokens.map(token => {
-      return /^[0-9]+$/.test(token) ? formatNumberWithDots(token) : token;
-    }).join('');
+  if (!isNaN(val)) {
+    realValue += val;
+    displayValue += val;
   } else {
     realValue += val;
     displayValue += val;
   }
 
-  display.value = displayValue;
+  const formatted = formatExpression(displayValue);
+  display.innerText = formatted;
   adjustFontSize();
 }
 
