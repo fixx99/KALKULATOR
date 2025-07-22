@@ -27,8 +27,6 @@ body{
     border: 1px solid #080808;
     border-radius: 10px;
     overflow: auto;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     direction: ltr;
 }
 
