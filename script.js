@@ -73,7 +73,7 @@ function adjustFontSize() {
   display.style.fontSize = fontSize + "px";
 
   setTimeout(() => {
-    while (display.scrollWidth > display.clientWidth && fontSize > 16) {
+    while (display.scrollWidth > display.clientWidth && fontSize > 10) {
       fontSize--;
       display.style.fontSize = fontSize + 'px';
     }
