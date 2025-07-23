@@ -7,18 +7,25 @@ function appendValue(val) {
   // Untuk perhitungan
   if (/[0-9]/.test(val)) {
     realValue += val;
-    // Tambahkan ke angka terakhir displayValue
     let tokens = realValue.split(/([\+\-\*\/])/);
     let last = tokens[tokens.length - 1];
-    tokens[tokens.length - 1] = last; // biarkan realValue tetap mentah
+    tokens[tokens.length - 1] = last;
 
     // Format ulang display
     displayValue = tokens.map(token => {
-      return /^[0-9]+$/.test(token) ? formatNumberWithDots(token) : token;
-    }).join('');
+  if (/^[0-9]+$/.test(token)) {
+    return formatNumberWithDots(token);
+    } else if (token === '*') {
+    return 'x';
+    } else if (token === '/') {
+    return '÷';
+    } else {
+    return token;
+    }
+  }).join('');
   } else {
     realValue += val;
-    displayValue += val;
+    displayValue += (val === '*') ? 'x' : (val === '/' ? '÷' : val);
   }
 
   display.value = displayValue;
@@ -35,9 +42,9 @@ function clearDisplay() {
 function calculate() {
   const display = document.getElementById("display");
   try {
-    const parsed = realValue.replace(/\./g,'')
+    const parsed = realValue.replace(/\./g,'');
     const result = eval(parsed);
-    display.value = displayValue
+    display.value = displayValue;
     realValue = result.toString();
     displayValue = formatNumberWithDots(realValue);
   } catch {
