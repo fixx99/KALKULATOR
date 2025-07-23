@@ -4,18 +4,24 @@ let displayValue = '';
 function appendValue(val) {
   const display = document.getElementById("display");
 
-  if (!display) return;
-
-  if (!isNaN(val)) {
+  // Untuk perhitungan
+  if (/[0-9]/.test(val)) {
     realValue += val;
-    displayValue += val;
+    // Tambahkan ke angka terakhir displayValue
+    let tokens = realValue.split(/([\+\-\*\/])/);
+    let last = tokens[tokens.length - 1];
+    tokens[tokens.length - 1] = last; // biarkan realValue tetap mentah
+
+    // Format ulang display
+    displayValue = tokens.map(token => {
+      return /^[0-9]+$/.test(token) ? formatNumberWithDots(token) : token;
+    }).join('');
   } else {
     realValue += val;
     displayValue += val;
   }
 
-  const formatted = formatExpression(displayValue);
-  display.innerText = formatted;
+  display.value = displayValue;
   adjustFontSize();
 }
 
@@ -29,9 +35,9 @@ function clearDisplay() {
 function calculate() {
   const display = document.getElementById("display");
   try {
-    const parsed = realValue.replace(/\./g,'');
+    const parsed = realValue.replace(/\./g,'')
     const result = eval(parsed);
-    display.value = displayValue;
+    display.value = displayValue
     realValue = result.toString();
     displayValue = formatNumberWithDots(realValue);
   } catch {
@@ -78,4 +84,18 @@ function adjustFontSize() {
       display.style.fontSize = fontSize + 'px';
     }
   }, 0);
+}
+
+function formatNumberWithDots(numberString) {
+  // Hilangkan semua titik
+  numberString = numberString.replace(/\./g, '');
+
+  // Pisahkan angka desimal (jika ada)
+  let [integer, decimal] = numberString.split(",");
+
+  // Format angka ribuan (bagian sebelum koma)
+  let formatted = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+  // Kembalikan hasil
+  return decimal ? `${formatted},${decimal}` : formatted;
 }
